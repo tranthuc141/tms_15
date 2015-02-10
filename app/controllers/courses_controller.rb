@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = Course.all
+    @courses = Course.paginate page: params[:page]
   end
 
   def new
