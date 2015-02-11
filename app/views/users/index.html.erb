@@ -1,18 +1,24 @@
 <h1>List Of Users</h1>
 <div class="col-sm-3 col-md-12">
-  <%= link_to "Add new User", new_user_path, class: "btn btn-lg btn-primary" %></br>
+  <% if !current_user.nil? && current_user.is_supervisor? %>
+  <%= link_to "Add new User", signup_path, class: "btn btn-lg btn-primary" %></br>
+  <% end %>
   <%= will_paginate %>
   <ul class="list-group">
     <% @users.each do |user| %>
       <li class="list-group-item list-group-item-info">
         <b><%= link_to user.name, user %></b> </br>
-        Added <%= time_ago_in_words user.created_at %> ago.
-        <%= link_to 'Details', user, class: "btn btn-xs btn-info" %> |
-        <%= link_to 'Edit', edit_user_path(user), class: "btn btn-xs btn-success" %> |
-        <%= link_to 'Delete', user, class: "btn btn-xs btn-warning",
+        Created <%= time_ago_in_words(user.created_at) %> ago.
+        <% if !current_user.nil? %>
+        <%= link_to "Details", user, class: "btn btn-xs btn-info" %>
+        <% if current_user.is_supervisor? %> |
+        <%= link_to "Edit", edit_user_path(user), class: "btn btn-xs btn-success" %> |
+        <%= link_to "Delete", user, class: "btn btn-xs btn-warning",
           method: :delete,
-          data: {confirm: 'Are you sure?'} %>
+          data: {confirm: "Are you sure?"} %>
+      <% end %>
       </li>
+      <% end %>
     <% end %>
   </ul>
   <%= will_paginate %>
