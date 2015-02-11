@@ -7,7 +7,11 @@
       <li class="list-group-item list-group-item-info">
         <b><%= link_to user.name, user %></b> </br>
         Added <%= time_ago_in_words user.created_at %> ago.
-        <%= link_to "Details", user, class: "btn btn-xs btn-info" %>
+        <%= link_to "Details", user, class: "btn btn-xs btn-info" %> |
+        <%= link_to "Edit", edit_user_path(user), class: "btn btn-xs btn-success" %> |
+        <%= link_to "Delete", user, class: "btn btn-xs btn-warning",
+          method: :delete,
+          data: {confirm: "Are you sure?"} %>
       </li>
     <% end %>
   </ul>

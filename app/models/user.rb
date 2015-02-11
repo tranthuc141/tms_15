@@ -8,6 +8,12 @@ class User < ActiveRecord::Base
     uniqueness: {case_sensitive: false}
   has_secure_password
 
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
+  
   private
   def downcase_email
     self.email = email.downcase

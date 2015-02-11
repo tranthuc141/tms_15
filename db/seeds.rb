@@ -23,5 +23,5 @@ User.create!(name:  "Hien Tran",
     address: address,
     date_of_join: date_of_join,
     password: password,
-    passwod_confirmation: password)
+    password_confirmation: password)
 end
