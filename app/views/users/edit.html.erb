@@ -4,23 +4,13 @@
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
-
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :date_of_join %>
-      <%= f.date_select :date_of_join, class: 'form-control' %> </br>
-
       <%= f.label :address %>
       <%= f.text_field :address, class: 'form-control' %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-      <%= f.submit "Update now", class: "btn btn-primary" %>
+      <%= f.label :date_of_join %>
+      <%= f.text_field :date_of_join, class: 'form-control' %>
+      <%= f.submit "Update", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

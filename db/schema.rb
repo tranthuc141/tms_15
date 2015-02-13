@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205073118) do
+ActiveRecord::Schema.define(version: 20150213073722) do
 
   create_table "course_subject_relation_ships", force: true do |t|
     t.integer  "course_id"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20150205073118) do
     t.date     "date_of_join"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remember_digest"
   end
 
 end

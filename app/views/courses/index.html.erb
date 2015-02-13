@@ -1,18 +1,25 @@
 <h1>The Training Courses</h1>
 <div class="col-sm-3 col-md-12">
+  <% if !current_user.nil? && current_user.is_supervisor?  %>
   <%= link_to "Add new Course","#", class: "btn btn-lg btn-primary" %></br>
+  <% end %>
   <%= will_paginate %>
   <ul class="list-group">
     <% @courses.each do |course| %>
       <li class="list-group-item list-group-item-info">
         <b><%= link_to course.name %></b> </br>
         Created <%= time_ago_in_words(course.created_at) %> ago.
-        <%= link_to 'Details', course_path(course), class: "btn btn-xs btn-info" %> |
-        <%= link_to 'Edit', edit_course_path(course), class: "btn btn-xs btn-success" %> |
-        <%= link_to 'Delete', course_path(course), class: "btn btn-xs btn-warning",
+        <% if !current_user.nil? %>
+        <%= link_to "Details", course_path(course), class: "btn btn-xs btn-info" %> 
+        <% if current_user.is_supervisor? %>
+        |
+        <%= link_to "Edit", edit_course_path(course), class: "btn btn-xs btn-success" %> |
+        <%= link_to "Delete", course_path(course), class: "btn btn-xs btn-warning",
           method: :delete,
-          data: {confirm: 'Are you sure?'} %>
+          data: {confirm: "Are you sure?"} %>
+        <% end %>
       </li>
+      <% end %>
     <% end %>
   </ul>
   <%= will_paginate %>
