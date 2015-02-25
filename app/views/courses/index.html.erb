@@ -1,7 +1,8 @@
 <h1>The Training Courses</h1>
 <div class="col-sm-3 col-md-12">
   <% if !current_user.nil? && current_user.is_supervisor?  %>
-  <%= link_to "Add new Course","#", class: "btn btn-lg btn-primary" %></br>
+    <%= link_to "Add new Course", new_course_path, 
+      class: "btn btn-lg btn-primary" %></br>
   <% end %>
   <%= will_paginate %>
   <ul class="list-group">
