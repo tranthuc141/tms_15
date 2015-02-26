@@ -13,15 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20150213073722) do
 
-  create_table "course_subject_relation_ships", force: true do |t|
+  create_table "course_subject_relationships", force: true do |t|
     t.integer  "course_id"
     t.integer  "subject_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "course_subject_relation_ships", ["course_id"], name: "index_course_subject_relation_ships_on_course_id", using: :btree
-  add_index "course_subject_relation_ships", ["subject_id"], name: "index_course_subject_relation_ships_on_subject_id", using: :btree
+  add_index "course_subject_relationships", ["course_id"], name: "index_course_subject_relationships_on_course_id", using: :btree
+  add_index "course_subject_relationships", ["subject_id"], name: "index_course_subject_relationships_on_subject_id", using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -42,13 +42,13 @@ ActiveRecord::Schema.define(version: 20150213073722) do
 
   create_table "subjects", force: true do |t|
     t.string   "name"
-    t.text     "descroption"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "task_progresses", force: true do |t|
-    t.integer  "subject_progres_id"
+    t.integer  "subject_progress_id"
     t.integer  "task_id"
     t.date     "date_of_start"
     t.boolean  "status"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20150213073722) do
     t.datetime "updated_at"
   end
 
-  add_index "task_progresses", ["subject_progres_id"], name: "index_task_progresses_on_subject_progres_id", using: :btree
+  add_index "task_progresses", ["subject_progress_id"], name: "index_task_progresses_on_subject_progress_id", using: :btree
   add_index "task_progresses", ["task_id"], name: "index_task_progresses_on_task_id", using: :btree
 
   create_table "tasks", force: true do |t|
