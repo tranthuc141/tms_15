@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get 'signup' => 'users#new'
-
+  resources :subjects do
+    get "addtask"
+  end
+  resources :tasks
   resources :courses
+  resources :subjects
   resources :users
 end
