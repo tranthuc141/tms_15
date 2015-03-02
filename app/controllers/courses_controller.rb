@@ -1,7 +1,10 @@
 class CoursesController < ApplicationController
+  respond_to :html, :js
+
   def show
     @course = Course.find params[:id]
     @subjects = @course.subjects
+    @users = @course.users
   end
 
   def index
@@ -24,6 +27,13 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    @course = Course.find params[:id]
+  end
+
+  def update
+    @course = Course.find params[:id]
+    @course.update_attributes course_params
+    redirect_to course_path @course
   end
 
   private
