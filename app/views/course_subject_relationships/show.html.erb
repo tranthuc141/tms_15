@@ -1,0 +1,14 @@
+<div class="col-md-8">
+  <h1> 
+    Add subjects to course <%= link_to @course.name, course_path(@course) %>
+  </h1>
+  <%= form_for :course, url: course_course_subject_relationships_path,
+              method: :patch do |f| %>
+    <%= collection_check_boxes(:course, :subject_ids, Subject.all, :id, :name) do |s|%>
+      <%= s.label(:"data-value" => s.value) { s.check_box + s.text } %> </br>
+    <% end %>
+    <div class="actions">
+      <%= f.submit "Add", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
