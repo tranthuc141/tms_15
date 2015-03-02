@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   resources :subjects do
     get "addtask"
   end
+  resources :courses do
+    resource :course_subject_relationships
+  end
   resources :tasks
-  resources :courses
   resources :subjects
   resources :users
 end
