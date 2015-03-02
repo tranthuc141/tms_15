@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :courses do
     resource :course_subject_relationships
+    resource :training_progresses
   end
   resources :tasks
   resources :subjects
