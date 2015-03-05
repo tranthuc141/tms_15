@@ -1,9 +1,5 @@
 <h1>The Training Courses</h1>
 <div class="col-sm-3 col-md-12">
-  <% if !current_user.nil? && current_user.is_supervisor?  %>
-    <%= link_to "Add new Course", new_course_path, 
-      class: "btn btn-lg btn-primary" %></br>
-  <% end %>
   <%= will_paginate %>
   <ul class="list-group">
     <% @courses.each do |course| %>
@@ -11,16 +7,9 @@
         <b><%= link_to course.name %></b> </br>
         Created <%= time_ago_in_words(course.created_at) %> ago.
         <% if !current_user.nil? %>
-        <%= link_to "Details", course_path(course), class: "btn btn-xs btn-info" %> 
-        <% if current_user.is_supervisor? %>
-        |
-        <%= link_to "Edit", edit_course_path(course), class: "btn btn-xs btn-success" %> |
-        <%= link_to "Delete", course_path(course), class: "btn btn-xs btn-warning",
-          method: :delete,
-          data: {confirm: "Are you sure?"} %>
+          <%= link_to "Details", course_path(course), class: "btn btn-xs btn-info" %>
         <% end %>
-      </li>
-      <% end %>
+      </li>      
     <% end %>
   </ul>
   <%= will_paginate %>

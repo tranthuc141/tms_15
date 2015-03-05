@@ -1,0 +1,7 @@
+<div id="content">
+  <h1><%= @course.name %></h1>
+  <p>
+    <%= @course.description %>
+  </p>
+  <%= link_to 'Edit course', edit_supervisor_course_path @course, remote: true, class: "btn btn-primary" %> </br>
+</div>
