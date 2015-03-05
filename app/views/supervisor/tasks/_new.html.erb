@@ -1,4 +1,4 @@
-<%= form_for @task do |t| %>
+<%= form_for [:supervisor, @task] do |t| %>
   <div class="field">
     <%= t.label :name %>
     <%= t.text_field :name, class: "form-control" %>

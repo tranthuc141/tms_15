@@ -1,0 +1,32 @@
+<div class="col-md-6">
+  <div id="content">
+    <h1> <%= @course.name %> </h1>
+    <p>
+      <%= h @course.description %>
+    </p>
+    <%= link_to 'Edit course', edit_course_path(@course),
+      class: "btn btn-primary", remote: true %>
+  </div>
+</div>
+
+<div class="form-horizontal">
+  <div class="col-md-3">
+    <h1> List subjects </h1>
+    <% @subjects.each do |subject| %>
+      <p> <%= link_to subject.name, subject_path(subject) %> </p>
+    <% end %>
+    <%= link_to 'Add subjects', course_course_subject_relationships_path(@course),
+                 target: "_blank" %>
+  </div>
+</div>
+
+<div class="form-horizontal">
+  <div class="col-md-3">
+    <h1> List Users </h1>
+    <% @users.each do |user| %>
+      <p> <%= link_to user.name, user_path(user) %> </p>
+    <% end %>
+    <%= link_to 'Add trainees', course_training_progresses_path(@course),
+                 target: "_blank" %>
+  </div>
+</div>

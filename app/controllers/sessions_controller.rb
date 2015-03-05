@@ -5,12 +5,15 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by email: params[:session][:email].downcase
     if user && user.authenticate(params[:session][:password])
-      flash[:info] = "Welcome to Training System"
-      remember user
       log_in user
-      redirect_to user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      if supervisor?
+        redirect_to supervisor_users_path
+      else
+        redirect_to user
+      end     
     else
-      flash[:danger] = "Invalid email/password"
+      flash.now[:danger] = "Invalid email/password"
       render 'new'
     end
   end
