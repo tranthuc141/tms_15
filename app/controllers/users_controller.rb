@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
+      log_in @user
       flash[:info] = "Created a trainee"
       redirect_to users_path
     else
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
     if user.update_attributes user_params
       if current_user? user
         flash[:success] = "Profile updated"
-        render "show"
+        redirect_to user
       else
         flash[:success] = "Information changed"
         redirect_to user
@@ -52,7 +53,7 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :is_supervisor)
+    params.require(:user).permit :name, :email, :address, :password, :password_confirmation
   end
 
   def supervisor
