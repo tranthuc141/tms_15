@@ -1,0 +1,18 @@
+<h1>List Of Users</h1>
+<div class="col-sm-3 col-md-12">
+  <%= link_to "Add new User", new_supervisor_user_path, 
+    class: "btn btn-lg btn-primary" %></br>
+  <%= will_paginate %>
+  <ul class="list-group">
+    <% @users.each do |user| %>
+      <li class="list-group-item list-group-item-info">
+        <b><%= link_to user.name, supervisor_user_path(user) %></b></br>
+        Added <%= time_ago_in_words user.created_at %> ago.
+        <%= link_to "Details", supervisor_user_path(user), class: "btn btn-xs btn-info" %> |
+        <%= link_to "Delete", supervisor_user_path(user), class: "btn btn-xs btn-warning",
+          method: :delete, data: {confirm: "Are you sure?"} %>
+      </li>
+    <% end %>
+  </ul>
+  <%= will_paginate %>
+</div>
