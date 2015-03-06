@@ -1,0 +1,6 @@
+<div id="content">
+  <h1><%= @task.name %></h1>
+  <p><%= @task.description %></p>
+  <%= link_to 'Edit task', edit_supervisor_task_path(@task),
+    remote: true, class: "btn btn-primary" %>
+</div>
