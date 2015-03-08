@@ -2,7 +2,7 @@
   <div id="content">
     <h1><%= @subject.name %></h1>
     <p><%= @subject.description %></p>
-    <%= link_to 'Edit subject', edit_subject_path(@subject),
+    <%= link_to 'Edit subject', edit_supervisor_subject_path(@subject),
       remote: true, class: "btn btn-primary" %>
   </div>
 </div>

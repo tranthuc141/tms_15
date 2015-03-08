@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new task_params
     @task.save
-    redirect_to subject_path(@task.subject)
+    redirect_to subject_path @task.subject
   end
 
   def destroy
