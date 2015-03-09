@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  get 'signup' => 'users#new'
+  get "*path" => 'static_pages#error'
 
   resources :courses do
     resource :course_subject_relationships
