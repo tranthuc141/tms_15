@@ -45,8 +45,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def supervisor_finish_subject(subject)
-    subject.subject_progresses.each do |sub_pro|
+  def trainee_finish_subject(subject_progress)
+    subject_progress.update_attributes status: false
+  end
+
+  def supervisor_finish_subject(subject_progresses)
+    subject_progresses.each do |sub_pro|
       sub_pro.update_attributes status: false
     end
   end

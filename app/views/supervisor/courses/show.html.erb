@@ -32,7 +32,8 @@
   <div class="col-md-3">
     <h1> List subjects </h1>
     <% @subjects.each do |subject| %>
-      <p> <%= link_to subject.name, supervisor_subject_path(subject) %> </p>
+      <p> <%= link_to subject.name, supervisor_subject_path(subject,
+              course_id: @course.id) %> </p>
     <% end %>
     <%= link_to 'Add subjects', course_course_subject_relationships_path(@course) %>
   </div>

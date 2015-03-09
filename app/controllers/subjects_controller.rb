@@ -1,8 +1,12 @@
 class SubjectsController < ApplicationController
   def show
     @subject = Subject.find params[:id]
+    @course = Course.find params[:course_id]
+    @training_progress = TrainingProgress.find_by course_id: @course.id,
+      user_id: current_user.id
+    @subject_progress = SubjectProgress.find_by training_progress_id: @training_progress.id,
+      subject_id: @subject.id
     @tasks = @subject.tasks
-    @task = Task.new
   end
 
   def index
@@ -12,12 +16,6 @@ class SubjectsController < ApplicationController
   def new
     @subject = Subject.new
     4.times{@task = @subject.tasks.build}
-  end
-
-  def addtask
-    @task = Task.new
-    @subject = Subject.find params[:subject_id]
-    @tasks = @subject.tasks
   end
 
   def create

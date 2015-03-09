@@ -1,3 +1,12 @@
+<div id="subject-status">
+  <% if @subject_progresses.count > 0 %>
+    <%= link_to 'Finish subject',
+          subject_progress_path(@subject.subject_progresses.first, course_id: @course.id), 
+          method: :delete, data: {confirm: "Are you sure?"},
+          class: "btn btn-warning" %>
+  <% end %>
+</div>
+
 <div class="col-md-8">
   <div id="content">
     <h1><%= @subject.name %></h1>
@@ -14,8 +23,6 @@
     <% @tasks.each do |task| %>
       <p>
         <%= link_to task.name, supervisor_task_path(task), remote:true %>
-        <%= link_to 'Destroy', task, method: :delete, data:{confirm: 'Are you sure?'}, 
-          class: "btn btn-xs btn-warning" %>
       </p>
     <% end %>
     <%= link_to 'Add a task', new_supervisor_task_path(subject_id: @subject.id), 
