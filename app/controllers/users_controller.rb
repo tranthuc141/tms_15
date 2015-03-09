@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    @course_list = @user.courses
   end
 
   def index

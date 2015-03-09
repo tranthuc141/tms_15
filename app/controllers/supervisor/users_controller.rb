@@ -29,13 +29,8 @@ class Supervisor::UsersController < ApplicationController
   def update
     @user = User.find params[:id]
     if @user.update_attributes user_params
-      if current_user? @user
-        flash[:success] = "Profile updated"
-        render "show"
-      else
-        flash[:success] = "Information changed"
-        redirect_to supervisor_users_url
-      end
+      flash[:success] = "Information changed"
+      redirect_to supervisor_user_path @user
     else
       render "edit"
     end
@@ -44,7 +39,7 @@ class Supervisor::UsersController < ApplicationController
   def destroy
     @user = User.find params[:id]
     @user.destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "User has been deleted"
     redirect_to supervisor_users_url
   end
 

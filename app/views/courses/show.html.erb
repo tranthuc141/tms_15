@@ -1,17 +1,26 @@
-<div class="col-md-8">
+<div class="col-md-6">
   <div id="content">
     <h1> <%= @course.name %> </h1>
     <p><%= h @course.description %></p>
-    <%= link_to 'Edit course', edit_course_path(@course),
-      class: "btn btn-primary", remote: true %>
   </div>
 </div>
 
 <div class="form-horizontal">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <h1> List subjects </h1>
     <% @subjects.each do |subject| %>
       <p><%= link_to subject.name, subject_path(subject) %></p>
+    <% end %>
+  </div>
+</div>
+
+<div class="form-horizontal">
+  <div class="col-md-3">
+    <h1> List Users </h1>
+    <% @users.each do |user| %>
+      <li class="list-group-item list-group-item-info">
+        <%= link_to user.name, user_path(user) %>
+      </li>
     <% end %>
   </div>
 </div>

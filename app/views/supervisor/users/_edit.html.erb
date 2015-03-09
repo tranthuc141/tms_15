@@ -7,8 +7,8 @@
   <%= f.label :email %>
   <%= f.email_field :email, class: "form-control" %>
 
-  <%= f.label :date_of_join %>
-  <%= f.date_select :date_of_join, class: "form-control" %> </br>
+  <%= f.label :address %>
+  <%= f.text_field :address, class: "form-control" %>
 
   <%= f.label :password %>
   <%= f.password_field :password, class: "form-control" %>
@@ -16,10 +16,5 @@
   <%= f.label :password_confirmation, "Confirmation" %>
   <%= f.password_field :password_confirmation, class: "form-control" %>
 
-  <%= f.label :is_supervisor, class: "checkbox inline" do %>
-    <%= f.check_box :is_supervisor %>
-    <span>Supervisor</span>
-  <% end %>
-  
   <%= f.submit "Update member", class: "btn btn-primary" %>
 <% end %>
