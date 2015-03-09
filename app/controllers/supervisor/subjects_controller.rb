@@ -22,6 +22,7 @@ class Supervisor::SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find params[:id]
+    @course = Course.find params[:course_id]
     @tasks = @subject.tasks
     @task = Task.new
   end

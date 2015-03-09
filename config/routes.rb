@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :subjects
   resources :users
   resources :training_progresses
+  resources :subject_progresses
 
   namespace :supervisor do
     resources :users
