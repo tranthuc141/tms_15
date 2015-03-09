@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :training_progresses
+  has_many :courses, through: :training_progresses
   attr_accessor :remember_token
   before_save :downcase_email
 

@@ -15,3 +15,19 @@
     </ul>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-6">
+    <ul class="list-group">
+      <% @course_list.each do |course| %>
+        <li class="list-group-item list-group-item-info">
+          <b>
+            <%= link_to course.name, course_path(course) %>
+          </b>
+          </br>
+          Status : <%= course.get_status(course) %>.
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

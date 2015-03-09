@@ -42,8 +42,11 @@
   <div class="col-md-3">
     <h1> List Users </h1>
     <% @users.each do |user| %>
-      <p> <%= link_to user.name, user_path(user) %> </p>
+      <p>
+        <%= link_to user.name, user_path(user) %>
+      </p>
     <% end %>
-    <%= link_to 'Add trainees', course_training_progresses_path(@course) %>
+    <%= link_to 'Add trainees', course_training_progresses_path(@course),
+                 target: "_blank", class: "list-group-item list-group-item-info" %>
   </div>
 </div>
