@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'subject_progresses/update'
+
   root  'static_pages#home'
   get 'help'  =>  'static_pages#help'
   get    'login'   => 'sessions#new'
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :subjects
   resources :users
+  resources :training_progresses
 
   namespace :supervisor do
     resources :users

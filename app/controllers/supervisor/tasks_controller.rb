@@ -23,6 +23,8 @@ class Supervisor::TasksController < ApplicationController
   def create
     @task = Task.new task_params
     @task.save
+    @training_progresses = @task.subject.training_progresses
+    current_user.update_progress_info @training_progresses
     redirect_to supervisor_subject_path @task.subject
   end
 

@@ -1,3 +1,22 @@
+<div id="course-status">
+  <% if @course.users.count > 0 %>
+    <% if @course.training_progresses.first.status.nil? %>
+      <%= link_to 'Start course', new_training_progress_path(course_id: @course.id), 
+        remote: true, class: "btn btn-primary" %>
+    <% elsif @course.training_progresses.first.status %>
+      <%= link_to 'Finish course', training_progress_path(@course, course_id: @course.id), 
+        method: :delete, data: {confirm: "Are you sure?"},
+        remote: true, class: "btn btn-warning" %>          
+    <% else %>
+      <h1><%= "Course finished" %></h1>
+      <%= link_to 'Restart course', new_training_progress_path(course_id: @course.id), 
+        remote: true, class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <h1>This course has no trainee, add trainees to start course</h1>
+  <% end %>
+</div>
+
 <div class="col-md-6">
   <div id="content">
     <h1> <%= @course.name %> </h1>
@@ -15,8 +34,7 @@
     <% @subjects.each do |subject| %>
       <p> <%= link_to subject.name, supervisor_subject_path(subject) %> </p>
     <% end %>
-    <%= link_to 'Add subjects', course_course_subject_relationships_path(@course),
-                 target: "_blank" %>
+    <%= link_to 'Add subjects', course_course_subject_relationships_path(@course) %>
   </div>
 </div>
 
@@ -26,7 +44,6 @@
     <% @users.each do |user| %>
       <p> <%= link_to user.name, user_path(user) %> </p>
     <% end %>
-    <%= link_to 'Add trainees', course_training_progresses_path(@course),
-                 target: "_blank" %>
+    <%= link_to 'Add trainees', course_training_progresses_path(@course) %>
   </div>
 </div>
