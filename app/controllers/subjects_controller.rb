@@ -1,34 +1,24 @@
 class SubjectsController < ApplicationController
   def show
-    @subject = Subject.find params[:id]
-    @course = Course.find params[:course_id]
-    @training_progress = TrainingProgress.find_by course_id: @course.id,
-      user_id: current_user.id
-    @subject_progress = SubjectProgress.find_by training_progress_id: @training_progress.id,
+    if params[:course_id] 
+      @course = Course.find(params[:course_id])
+      unless @subject = @course.subjects.find_by(id: params[:id])
+        flash[:notice] = "Not found subject #{params[:id]} in this course"
+        redirect_to @course
+        return
+      end
+    else
+      @subject = Subject.find params[:id]
+    end
+    training_progress = TrainingProgress.find_by user_id: current_user.id,
+      course_id: @course.id
+    @subject_progress = SubjectProgress.find_by training_progress_id: training_progress.id,
       subject_id: @subject.id
     @tasks = @subject.tasks
   end
 
   def index
     @subjects = Subject.paginate page: params[:page]
-  end
-
-  def new
-    @subject = Subject.new
-    4.times{@task = @subject.tasks.build}
-  end
-
-  def create
-    @subject = Subject.new subject_params
-    if @subject.save
-      flash[:success] = "Create subject successfully!"
-      redirect_to subjects_path
-    else
-      render 'new'
-    end   
-  end
-
-  def edit
   end
 
   private

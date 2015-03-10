@@ -1,25 +1,28 @@
 class SubjectProgressesController < ApplicationController
   def new
     @subject_progress = SubjectProgress.find params[:subject_progress_id]
+    @subject = Subject.find params[:subject_id]
     @course = Course.find params[:course_id]
-    subject = Subject.find @subject_progress.subject_id
     current_user.trainee_start_subject @subject_progress
-    redirect_to subject_path subject, course_id: @course.id
+    redirect_to course_subject_path @course.id, @subject
   end
 
   def destroy
+    @subject = Subject.find params[:subject_id]
+    @course = Course.find params[:course_id]
     if current_user.is_supervisor?
-      @subject = Subject.find params[:id]
-      @course = Course.find params[:course_id]
-      @subject_progresses = @subject.subject_progresses
+      tr_pro = TrainingProgress.find_by course_id: @course.id
+      @subject_progresses = SubjectProgress.where training_progress_id: tr_pro.id,
+        subject_id: @subject.id
       current_user.supervisor_finish_subject @subject_progresses
-      redirect_to supervisor_subject_path @subject, course_id: @course.id
+      redirect_to supervisor_course_subject_path @course.id, @subject
     else
-      @subject_progress = SubjectProgress.find params[:id]
-      @course = Course.find params[:course_id]
-      subject = Subject.find @subject_progress.subject_id
+      @training_progress = TrainingProgress.find_by course_id: @course.id,
+        user_id: current_user
+      @subject_progress = SubjectProgress.find_by subject_id: @subject.id,
+        training_progress_id: @training_progress.id
       current_user.trainee_finish_subject @subject_progress
-      redirect_to subject_path subject, course_id: @course.id
+      redirect_to course_subject_path @course.id, @subject
     end
   end
 

@@ -8,6 +8,7 @@
         <% if logged_in? %>
           <% if supervisor? %>
             <li><%= link_to "Courses", supervisor_courses_path %></li>
+            <li><%= link_to "Subjects", supervisor_subjects_path %></li>
             <li><%= link_to "Users", supervisor_users_path %></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>

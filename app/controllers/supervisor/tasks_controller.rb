@@ -17,7 +17,7 @@ class Supervisor::TasksController < ApplicationController
   def update
     @task = Task.find params[:id]
     @task.update_attributes task_params
-    redirect_to subject_path @task.subject
+    redirect_to supervisor_subject_path @task.subject
   end
 
   def create
@@ -32,7 +32,7 @@ class Supervisor::TasksController < ApplicationController
     @task = Task.find params[:id]
     @subject = @task.subject
     @task.destroy
-    redirect_to subject_path @subject
+    redirect_to supervisor_subject_path @subject
   end
 
   private
