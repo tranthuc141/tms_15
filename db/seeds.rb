@@ -4,12 +4,12 @@
   Course.create!(name: name,description: desc)
 end
 
-User.create!(name:  "Hien Tran",
-  email: "hientv@example.com",
-  address: "Tran Phu - Ha Dong",
+User.create!(name:  "Hieu Nguyen",
+  email: "nhieu92@gmail.com",
+  address: "Ha Noi",
   date_of_join: "Fri, 19 Sep 2014",
-  password: "1234567",
-  password_confirmation: "1234567",
+  password: "123456",
+  password_confirmation: "123456",
   is_supervisor: true)
 
 99.times do |n|

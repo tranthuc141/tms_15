@@ -5,7 +5,11 @@
   <%= form_for :course, url: course_training_progresses_path,
               method: :patch do |f| %>
     <%= collection_check_boxes(:course, :user_ids, User.all, :id, :name) do |u| %>
-      <%= u.label(:"data-value" => u.value) { u.check_box + u.text } %> </br>
+      <ul class ="list-group">
+        <li class="list-group-item list-group-item-info">
+          <%= u.label(:"data-value" => u.value) {u.check_box + u.text} %>
+        </li>
+      </ul>
     <% end %>
     <div class="actions">
       <%= f.submit "Add", class: "btn btn-primary" %>
