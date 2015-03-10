@@ -1,3 +1,4 @@
+<% provide(:title, "Edit task") %>
 <%= form_for [:supervisor, @task] do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">

@@ -1,3 +1,4 @@
+<% provide(:title, @course.name) %>
 <div id="course-status">
   <% if @course.users.count > 0 %>
     <% if @course.training_progresses.first.status.nil? %>

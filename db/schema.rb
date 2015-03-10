@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20150302013656) do
     t.datetime "updated_at"
   end
 
-  add_index "course_subject_relationships", ["course_id"], name: "index_course_subject_relationships_on_course_id", using: :btree
-  add_index "course_subject_relationships", ["subject_id"], name: "index_course_subject_relationships_on_subject_id", using: :btree
+  add_index "course_subject_relationships", ["course_id"], name: "index_course_subject_relationships_on_course_id"
+  add_index "course_subject_relationships", ["subject_id"], name: "index_course_subject_relationships_on_subject_id"
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20150302013656) do
     t.datetime "updated_at"
   end
 
-  add_index "subject_progresses", ["subject_id"], name: "index_subject_progresses_on_subject_id", using: :btree
-  add_index "subject_progresses", ["training_progress_id"], name: "index_subject_progresses_on_training_progress_id", using: :btree
+  add_index "subject_progresses", ["subject_id"], name: "index_subject_progresses_on_subject_id"
+  add_index "subject_progresses", ["training_progress_id"], name: "index_subject_progresses_on_training_progress_id"
 
   create_table "subjects", force: true do |t|
     t.string   "name"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20150302013656) do
     t.datetime "updated_at"
   end
 
-  add_index "task_progresses", ["subject_progress_id"], name: "index_task_progresses_on_subject_progress_id", using: :btree
-  add_index "task_progresses", ["task_id"], name: "index_task_progresses_on_task_id", using: :btree
+  add_index "task_progresses", ["subject_progress_id"], name: "index_task_progresses_on_subject_progress_id"
+  add_index "task_progresses", ["task_id"], name: "index_task_progresses_on_task_id"
 
   create_table "tasks", force: true do |t|
     t.string   "name"
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20150302013656) do
     t.datetime "updated_at"
   end
 
-  add_index "training_progresses", ["course_id"], name: "index_training_progresses_on_course_id", using: :btree
-  add_index "training_progresses", ["user_id"], name: "index_training_progresses_on_user_id", using: :btree
+  add_index "training_progresses", ["course_id"], name: "index_training_progresses_on_course_id"
+  add_index "training_progresses", ["user_id"], name: "index_training_progresses_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email"
