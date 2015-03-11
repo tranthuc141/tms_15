@@ -7,22 +7,30 @@ class Supervisor::SubjectsController < ApplicationController
 
   def new
     @subject = Subject.new
-    4.times{@task = @subject.tasks.build}
   end
 
   def create
     @subject = Subject.new subject_params
     if @subject.save
       flash[:success] = "Create subject successfully!"
-      redirect_to supervisor_subjects_path
+      redirect_to supervisor_subject_path @subject
     else
       render 'new'
     end 
   end
 
   def show
-    @subject = Subject.find params[:id]
-    @course = Course.find params[:course_id]
+    if params[:course_id] 
+      @course = Course.find(params[:course_id])
+      unless @subject = @course.subjects.find_by(id: params[:id])
+        flash[:notice] = "Not found subject #{params[:id]} in this course"
+        redirect_to [:supervisor, @course]
+        return
+      end
+    else
+      @subject = Subject.find params[:id]
+    end
+    @subject_progresses = @subject.subject_progresses
     @tasks = @subject.tasks
     @task = Task.new
   end

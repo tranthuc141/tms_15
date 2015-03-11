@@ -1,0 +1,20 @@
+<h1>Subjects</h1>
+<div class="col-sm-3 col-md-12">
+  <%= link_to "Add new Subject", new_supervisor_subject_path,
+    class: "btn btn-lg btn-primary" %>
+  <%= will_paginate %>
+  <ul class="list-group">
+    <% @subjects.each do |subject| %>
+      <li class="list-group-item list-group-item-info">
+        <b><%= link_to subject.name, supervisor_subject_path(subject) %></b> </br>
+        Created <%= time_ago_in_words(subject.created_at) %> ago.
+        <%= link_to "Details", supervisor_subject_path(subject),
+          class: "btn btn-xs btn-info" %> |
+        <%= link_to "Delete", supervisor_subject_path(subject), 
+          class: "btn btn-xs btn-warning",
+          method: :delete, data: {confirm: "Are you sure?"} %>
+      </li>
+    <% end %>
+  </ul>
+  <%= will_paginate %>
+</div>
