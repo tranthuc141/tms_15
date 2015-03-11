@@ -19,3 +19,13 @@
     </div>
   </div>
 </div>
+
+<ul class="list-group">
+  <% @activities.each do |activity| %>
+    <li>
+      <%= activity.name %> about
+      <%= time_ago_in_words(activity.created_at) %> ago.
+      </br>
+    </li>
+  <% end %>
+</ul>

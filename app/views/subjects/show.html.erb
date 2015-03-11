@@ -6,7 +6,7 @@
   <% elsif @subject_progress.status %>
     <%= link_to 'Finish subject', subject_progress_path(@subject_progress,
         subject_id: @subject.id, course_id: @course.id), 
-        method: :delete, data: {confirm: "Are you sure?"},
+        method: :patch, data: {confirm: "Are you sure?"},
         class: "btn btn-warning" %>
   <% else %>
     <b>Subject finished</b>
@@ -27,6 +27,13 @@
     <% @tasks.each do |task| %>
       <p>
         <%= link_to task.name, task_path(task), remote:true %>
+        <% if task.get_task_progress(task, current_user, @course).status %>          
+          <%= link_to 'Done', task_progress_path(task, course_id: @course.id),
+            method: :patch, data:{confirm: 'Are you sure?'}, 
+            class: "btn btn-xs btn-primary" %>
+        <% else %>
+          This task has done         
+        <% end %>
       </p>
     <% end %>
   </div>

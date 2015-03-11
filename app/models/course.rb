@@ -11,6 +11,8 @@ class Course < ActiveRecord::Base
   def get_status(course)
     if TrainingProgress.find_by(course_id: course.id).status
       'Learning'
+    elsif TrainingProgress.find_by(course_id: course.id).status.nil?
+      'Not started yet'
     else
       'Done'
     end

@@ -11,6 +11,7 @@ class Supervisor::UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    @activities = @user.activities.last 10
   end
 
   def create

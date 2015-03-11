@@ -4,7 +4,7 @@
       <%= link_to 'Finish subject',
             subject_progress_path(@subject.subject_progresses.first, course_id: @course.id,
             subject_id: @subject.id),
-            method: :delete, data: {confirm: "Are you sure?"},
+            method: :patch, data: {confirm: "Are you sure?"},
             class: "btn btn-warning" %>
     <% end %>
   </div>
@@ -17,7 +17,7 @@
     <% elsif @subject_progress.status %>
       <%= link_to 'Finish subject', subject_progress_path(@subject_progress,
           subject_id: @subject.id, course_id: @course.id), 
-          method: :delete, data: {confirm: "Are you sure?"},
+          method: :patch, data: {confirm: "Are you sure?"},
           class: "btn btn-warning" %>
     <% else %>
       <b>Subject finished</b>
