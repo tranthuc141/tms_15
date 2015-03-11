@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :courses, through: :training_progresses
   has_many :training_progresses, dependent: :destroy
+  has_many :activities
 
   def update_progress_info(training_progresses)
     training_progresses.each do |training_progress|
@@ -22,6 +23,7 @@ class User < ActiveRecord::Base
         sub_pro.update_attributes task_ids: sub_pro.subject.tasks.ids
       end
     end
+    activities.create! name: "Updated subjects in course"
   end
 
   def start_course(course)
@@ -29,6 +31,7 @@ class User < ActiveRecord::Base
     training_progresses.each do |training_progress|
       training_progress.update_attributes status: true
     end
+    activities.create! name: "Started course #{course.name}"
   end
 
   def finish_course(course)
@@ -36,6 +39,7 @@ class User < ActiveRecord::Base
     training_progresses.each do |training_progress|
       training_progress.update_attributes status: false
     end
+    activities.create! name: "Finished course #{course.name}"
   end
 
   def trainee_start_subject(subject_progress)
@@ -43,16 +47,26 @@ class User < ActiveRecord::Base
     subject_progress.task_progresses.each do |tas_pro|
       tas_pro.update_attributes status: true
     end
+    activities.create! name: "Started subject #{subject_progress.subject.name}",
+      subject_progress_id: subject_progress.id
   end
 
   def trainee_finish_subject(subject_progress)
     subject_progress.update_attributes status: false
+    activities.create! name: "Finished subject #{subject_progress.subject.name}"
   end
 
   def supervisor_finish_subject(subject_progresses)
     subject_progresses.each do |sub_pro|
       sub_pro.update_attributes status: false
     end
+    subject_name = subject_progresses.first.subject.name
+    activities.create! name: "Finished subject #{subject_name}"
+  end
+
+  def done_task(task_progress)
+    task_progress.update_attributes status: false
+    activities.create! name: "Done task #{task_progress.task.name}"
   end
 
   def self.digest(string)

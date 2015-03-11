@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find params[:id]
     @course_list = @user.courses
+    @activities = @user.activities.last 10
   end
 
   def index

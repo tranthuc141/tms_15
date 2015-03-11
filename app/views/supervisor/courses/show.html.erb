@@ -6,7 +6,7 @@
         remote: true, class: "btn btn-primary" %>
     <% elsif @course.training_progresses.first.status %>
       <%= link_to 'Finish course', training_progress_path(@course, course_id: @course.id), 
-        method: :delete, data: {confirm: "Are you sure?"},
+        method: :patch, data: {confirm: "Are you sure?"},
         remote: true, class: "btn btn-warning" %>          
     <% else %>
       <h1><%= "Course finished" %></h1>

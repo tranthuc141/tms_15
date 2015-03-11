@@ -7,7 +7,7 @@ class SubjectProgressesController < ApplicationController
     redirect_to course_subject_path @course.id, @subject
   end
 
-  def destroy
+  def update
     @subject = Subject.find params[:subject_id]
     @course = Course.find params[:course_id]
     if current_user.is_supervisor?
@@ -15,14 +15,14 @@ class SubjectProgressesController < ApplicationController
       @subject_progresses = SubjectProgress.where training_progress_id: tr_pro.id,
         subject_id: @subject.id
       current_user.supervisor_finish_subject @subject_progresses
-      redirect_to supervisor_course_subject_path @course.id, @subject
+      redirect_to supervisor_course_subject_path @course, @subject
     else
       @training_progress = TrainingProgress.find_by course_id: @course.id,
         user_id: current_user
       @subject_progress = SubjectProgress.find_by subject_id: @subject.id,
         training_progress_id: @training_progress.id
       current_user.trainee_finish_subject @subject_progress
-      redirect_to course_subject_path @course.id, @subject
+      redirect_to course_subject_path @course, @subject
     end
   end
 

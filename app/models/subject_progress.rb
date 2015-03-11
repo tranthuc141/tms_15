@@ -3,4 +3,5 @@ class SubjectProgress < ActiveRecord::Base
   belongs_to :subject
   has_many :task_progresses
   has_many :tasks, through: :task_progresses
+  has_many :activities
 end

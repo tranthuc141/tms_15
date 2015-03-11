@@ -3,4 +3,5 @@ class TrainingProgress < ActiveRecord::Base
   belongs_to :course
   has_many :subject_progresses, dependent: :destroy
   has_many :subjects, through: :subject_progresses
+  has_many :activities
 end
