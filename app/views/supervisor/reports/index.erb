@@ -1,0 +1,10 @@
+<h1>Check report</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: supervisor_reports_url) do |f| %>
+      <%= f.label :user_id %>
+      <%= f.number_field :user_id, class: 'form-control' %>
+      <%= f.submit "Check report", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

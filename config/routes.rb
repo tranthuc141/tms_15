@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  get 'report' => 'reports#new'
+  resources :reports,          only: [:create, :destroy]
 
   resources :courses do
     resource :course_subject_relationships
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
     end
     resources :subjects
     resources :tasks
+    resources :reports
   end
   get "*path" => 'static_pages#error'
 end

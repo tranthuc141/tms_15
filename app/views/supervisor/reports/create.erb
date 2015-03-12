@@ -1,0 +1,8 @@
+<ul class="list-group">
+  <% @report_list.each do |report| %>
+    <li>
+      <b><%= report.content %></b> at <%= report.created_at %>
+      </br>
+    </li>
+  <% end %>
+</ul>
