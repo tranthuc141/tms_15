@@ -22,13 +22,27 @@
     <h1>List course added</h1>
     <ul class="list-group">
       <% @course_list.each do |course| %>
-        <li class="list-group-item list-group-item-info">
-          <b>
-            <%= link_to course.name, course_path(course) %>
-          </b>
-          </br>
-          Status : <%= course.get_status(course) %>.
-        </li>
+        <% if course.get_training_progress(course, current_user).status.nil? %>
+          <li class="list-group-item list-group-item-info">    
+            <%= link_to course.name, "#",
+              data: {confirm: "This course hasn't been start"} %> </br>
+            Status : <%= course.get_status course %>.
+          </li>
+        <% else %>
+          <li class="list-group-item list-group-item-info">
+            <b>
+              <%= link_to course.name, course_path(course) %> </br>
+              Quantity subject complete:
+                <%= course.quantity_subject_done(
+                  course.get_training_progress course, current_user) %> </br>
+              Quantity task done:
+                <%= course.quantity_task_done(
+                  course.get_training_progress course, current_user) %> </br>
+            </b>
+            </br>
+            Status : <%= course.get_status course %>.
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>

@@ -24,17 +24,19 @@
   <div class="col-md-4">
     <h1>List tasks</h1>
     <p><%= link_to "Show subject content", course_subject_path(@course, @subject), remote:true %></p>
-    <% @tasks.each do |task| %>
-      <p>
-        <%= link_to task.name, task_path(task), remote:true %>
-        <% if task.get_task_progress(task, current_user, @course).status %>          
-          <%= link_to 'Done', task_progress_path(task, course_id: @course.id),
-            method: :patch, data:{confirm: 'Are you sure?'}, 
-            class: "btn btn-xs btn-primary" %>
-        <% else %>
-          This task has done         
-        <% end %>
-      </p>
+    <% unless @subject_progress.status.nil? %>
+      <% @tasks.each do |task| %>
+        <p>
+          <%= link_to task.name, task_path(task), remote:true %>
+          <% if task.get_task_progress(task, current_user, @course).status %>          
+            <%= link_to 'Done', task_progress_path(task, course_id: @course.id),
+              method: :patch, data:{confirm: 'Are you sure?'}, 
+              class: "btn btn-xs btn-primary" %>
+          <% else %>
+            This task has done         
+          <% end %>
+        </p>
+      <% end %>
     <% end %>
   </div>
 </div>

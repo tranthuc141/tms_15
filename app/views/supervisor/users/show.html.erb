@@ -20,6 +20,36 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-6">
+    <h1>List course added</h1>
+    <ul class="list-group">
+      <% @course_list.each do |course| %>
+        <% if course.get_training_progress(course, @user).status.nil? %>
+          <li class="list-group-item list-group-item-info">    
+            <%= link_to course.name, course_path(course) %> </br>
+            Status : <%= course.get_status course %>.
+          </li>
+        <% else %>
+          <li class="list-group-item list-group-item-info">
+            <b>
+              <%= link_to course.name, course_path(course) %> </br>
+              Quantity subject complete:
+                <%= course.quantity_subject_done(
+                  course.get_training_progress course, @user) %> </br>
+              Quantity task done:
+                <%= course.quantity_task_done(
+                  course.get_training_progress course, @user) %> </br>
+            </b>
+            </br>
+            Status : <%= course.get_status course %>.
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
 <ul class="list-group">
   <% @activities.each do |activity| %>
     <li>
