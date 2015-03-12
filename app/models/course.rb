@@ -17,4 +17,19 @@ class Course < ActiveRecord::Base
       'Done'
     end
   end
+
+  def quantity_subject_done(training_progress)
+    subjects = training_progress.subject_progresses
+    subjects.select{|s| s.status == false}.count
+  end
+
+  def quantity_task_done(training_progress)
+    subjects = training_progress.subject_progresses
+    subjects.map{|sub| sub.task_progresses.select{|t| t.status == false}.count}.inject(:+)
+  end
+
+  def get_training_progress(course, user)
+    training_progress = TrainingProgress.find_by user_id: user.id,
+      course_id: course.id
+  end
 end
